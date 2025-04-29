@@ -12,10 +12,7 @@
     "url": "git+https://github.com/XeicuLy/eslint-plugin-xeiculy.git"
   },
   "bugs": "https://github.com/XeicuLy/eslint-plugin-xeiculy/issues",
-  "keywords": [
-    "eslint",
-    "eslint-plugin"
-  ],
+  "keywords": ["eslint", "eslint-plugin"],
   "sideEffects": false,
   "exports": {
     ".": "./dist/index.js"
@@ -23,14 +20,14 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "biome": "biome check",
+    "biome:fix": "biome check --write",
     "prepare": "husky"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "19.8.0",
     "@types/node": "22.15.3",
     "commitizen": "4.3.1",
