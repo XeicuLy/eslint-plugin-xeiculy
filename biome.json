@@ -27,12 +27,18 @@
 	},
 	"javascript": {
 		"formatter": {
-			"quoteStyle": "single"
+			"quoteStyle": "single",
+			"lineWidth": 120
+		},
+		"globals": ["_", "window", "document", "navigator"],
+		"linter": {
+			"enabled": true
 		}
 	},
 	"json": {
 		"formatter": {
-			"enabled": true
+			"enabled": true,
+			"lineWidth": 120
 		},
 		"linter": {
 			"enabled": true
