@@ -40,6 +40,14 @@
     "typescript": "5.8.3",
     "vite": "6.3.3"
   },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.cts"
+    }
+  },
   "volta": {
     "node": "22.15.0",
     "pnpm": "10.10.0"
