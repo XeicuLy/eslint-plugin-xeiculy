@@ -27,11 +27,26 @@
     "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "@commitlint/cli": "19.8.0",
+    "@types/node": "22.15.3",
+    "commitizen": "4.3.1",
+    "commitlint-config-gitmoji": "2.3.1",
+    "cz-customizable": "7.4.0",
+    "husky": "9.1.7",
     "typescript": "5.8.3",
     "vite": "6.3.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.cts"
+    }
   },
   "volta": {
     "node": "22.15.0",
