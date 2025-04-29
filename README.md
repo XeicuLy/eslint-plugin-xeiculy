@@ -6,7 +6,7 @@
 
 ## License
 
-[MIT](./LICENSE) License © 2025-PRESENT [XeicuLy](https://github.com/XeicuLy)
+[MIT](./LICENSE) License © 2025–Present [XeicuLy](https://github.com/XeicuLy)
 
 <!-- Badges -->
 
