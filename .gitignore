@@ -1,11 +1,22 @@
+# dev/build outputs
+.output
+.data
 .cache
-.DS_Store
-.idea
-*.log
-*.tgz
-coverage
 dist
-lib-cov
-logs
-node_modules
+*.tgz
 temp
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+
+# Local env files
+.env
+.env.*
+!.env.example
