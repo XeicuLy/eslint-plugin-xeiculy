@@ -22,8 +22,12 @@
   "types": "./dist/index.d.ts",
   "files": ["dist"],
   "scripts": {
-    "biome": "biome check",
-    "biome:fix": "biome check --write",
+    "biome": "biome check .",
+    "biome:fix": "biome check --write .",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "lint": "pnpm biome && pnpm prettier",
+    "lint:fix": "pnpm biome:fix && pnpm prettier:fix",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -48,7 +52,8 @@
     }
   },
   "lint-staged": {
-    "**/*.{js,ts,cjs,mjs,cts,mts,json,jsonc}": ["biome check --write --no-errors-on-unmatched"]
+    "**/*.{css,js,ts,cjs,mjs,cts,mts,jsx,tsx,json,jsonc}": ["biome check --write --no-errors-on-unmatched"],
+    "**/*.{md,html,yaml,yml}": ["prettier --write"]
   },
   "volta": {
     "node": "22.15.0",

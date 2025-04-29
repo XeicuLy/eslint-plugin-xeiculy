@@ -1,1 +1,3 @@
-lint-staged
+set -e
+
+lint-staged --concurrent false
