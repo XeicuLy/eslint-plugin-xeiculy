@@ -1,56 +1,51 @@
 {
-  "name": "eslint-plugin-xeiculy",
-  "type": "module",
-  "version": "0.0.0",
-  "packageManager": "pnpm@10.10.0",
-  "description": "XeicuLy's opinionated ESLint rules",
-  "author": "XeicuLy",
-  "license": "MIT",
-  "homepage": "https://github.com/XeicuLy/eslint-plugin-xeiculy#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/XeicuLy/eslint-plugin-xeiculy.git"
-  },
-  "bugs": "https://github.com/XeicuLy/eslint-plugin-xeiculy/issues",
-  "keywords": [
-    "eslint",
-    "eslint-plugin"
-  ],
-  "sideEffects": false,
-  "exports": {
-    ".": "./dist/index.js"
-  },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@commitlint/cli": "19.8.0",
-    "@types/node": "22.15.3",
-    "commitizen": "4.3.1",
-    "commitlint-config-gitmoji": "2.3.1",
-    "cz-customizable": "7.4.0",
-    "husky": "9.1.7",
-    "typescript": "5.8.3",
-    "vite": "6.3.3"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-customizable"
-    },
-    "cz-customizable": {
-      "config": ".cz-config.cts"
-    }
-  },
-  "volta": {
-    "node": "22.15.0",
-    "pnpm": "10.10.0"
-  }
+	"name": "eslint-plugin-xeiculy",
+	"type": "module",
+	"version": "0.0.0",
+	"packageManager": "pnpm@10.10.0",
+	"description": "XeicuLy's opinionated ESLint rules",
+	"author": "XeicuLy",
+	"license": "MIT",
+	"homepage": "https://github.com/XeicuLy/eslint-plugin-xeiculy#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/XeicuLy/eslint-plugin-xeiculy.git"
+	},
+	"bugs": "https://github.com/XeicuLy/eslint-plugin-xeiculy/issues",
+	"keywords": ["eslint", "eslint-plugin"],
+	"sideEffects": false,
+	"exports": {
+		".": "./dist/index.js"
+	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": ["dist"],
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"prepare": "husky"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@commitlint/cli": "19.8.0",
+		"@types/node": "22.15.3",
+		"commitizen": "4.3.1",
+		"commitlint-config-gitmoji": "2.3.1",
+		"cz-customizable": "7.4.0",
+		"husky": "9.1.7",
+		"typescript": "5.8.3",
+		"vite": "6.3.3"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-customizable"
+		},
+		"cz-customizable": {
+			"config": ".cz-config.cts"
+		}
+	},
+	"volta": {
+		"node": "22.15.0",
+		"pnpm": "10.10.0"
+	}
 }
