@@ -46,6 +46,9 @@
       "config": ".cz-config.cts"
     }
   },
+  "lint-staged": {
+    "**.{js,ts,cjs,mjs,cts,mts,json,jsonc}": ["biome check --write --no-errors-on-unmatched"]
+  },
   "volta": {
     "node": "22.15.0",
     "pnpm": "10.10.0"
