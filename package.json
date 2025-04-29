@@ -34,6 +34,7 @@
     "commitlint-config-gitmoji": "2.3.1",
     "cz-customizable": "7.4.0",
     "husky": "9.1.7",
+    "lint-staged": "15.5.1",
     "typescript": "5.8.3",
     "vite": "6.3.3"
   },
@@ -44,6 +45,9 @@
     "cz-customizable": {
       "config": ".cz-config.cts"
     }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,cjs,mjs,cts,mts,json,jsonc}": ["biome check --write --no-errors-on-unmatched"]
   },
   "volta": {
     "node": "22.15.0",
