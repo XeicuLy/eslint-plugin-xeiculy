@@ -13,16 +13,8 @@ const config = {
       value: ':art: improve',
     },
     {
-      name: 'a11y:      ♿️ アクセシビリティの向上',
-      value: ':wheelchair: a11y',
-    },
-    {
-      name: 'assets:    🍱 アセットの追加/更新',
-      value: ':bento: assets',
-    },
-    {
-      name: 'update:    🦺 バリデーションの追加/更新',
-      value: ':safety_vest: update',
+      name: 'update:    🚨 リンターの警告修正',
+      value: ':rotating_light: update',
     },
     {
       name: 'update:    🩹 軽微な修正',
@@ -47,10 +39,6 @@ const config = {
     {
       name: 'delete:    🔥 ファイルやコードの削除',
       value: ':fire: delete',
-    },
-    {
-      name: 'style:     💄 UIやスタイルファイルの追加/更新',
-      value: ':lipstick: style',
     },
     {
       name: 'type:      🏷️ 型の追加/更新',
@@ -81,6 +69,10 @@ const config = {
       value: ':hammer: chore',
     },
     {
+      name: 'chore:     🧑‍💻 開発者体験向上',
+      value: ':technologist: chore',
+    },
+    {
       name: 'ci:        👷 CIビルドシステムの追加/更新',
       value: ':construction_worker: ci',
     },
@@ -91,6 +83,10 @@ const config = {
     {
       name: 'package:   📦 パッケージの追加/更新',
       value: ':package: package',
+    },
+    {
+      name: 'release:   🚀 リリース',
+      value: ':rocket: release',
     },
     {
       name: 'WIP:       🚧 作業途中',
