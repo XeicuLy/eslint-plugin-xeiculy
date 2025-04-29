@@ -22,7 +22,8 @@
 	"types": "./dist/index.d.ts",
 	"files": ["dist"],
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"biome": "biome check",
+		"biome:fix": "biome check --write",
 		"prepare": "husky"
 	},
 	"devDependencies": {
