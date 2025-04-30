@@ -43,7 +43,8 @@
     "lint-staged": "15.5.1",
     "prettier": "3.5.3",
     "typescript": "5.8.3",
-    "vite": "6.3.3"
+    "vite": "6.3.3",
+    "vitest": "3.1.2"
   },
   "config": {
     "commitizen": {
@@ -56,6 +57,9 @@
   "lint-staged": {
     "**/*.{css,js,ts,cjs,mjs,cts,mts,jsx,tsx,json,jsonc}": ["biome check --write --no-errors-on-unmatched"],
     "**/*.{md,html,yaml,yml}": ["prettier --write"]
+  },
+  "resolutions": {
+    "eslint-plugin-xeiculy": "workspace:*"
   },
   "volta": {
     "node": "22.15.0",
