@@ -1,5 +1,6 @@
 name: 🐛 バグ報告 / Bug Report
 description: バグの詳細を記入してください / Please provide details about the bug
+title: '[BUG] 🐛 バグの概要を入力 / Enter bug summary'
 labels: ['bug']
 body:
   - type: markdown

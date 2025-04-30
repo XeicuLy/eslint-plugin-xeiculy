@@ -1,5 +1,6 @@
 name: 💡 機能リクエスト / Feature Request
 description: 新機能のアイデアを提案してください / Please suggest an idea for this project
+title: '[FEATURE] 💡 機能の概要を入力 / Enter feature summary'
 labels: ['enhancement']
 body:
   - type: markdown
