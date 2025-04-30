@@ -7,7 +7,6 @@
     "resolveJsonModule": true,
     "types": ["vitest/globals", "node"],
     "strict": true,
-    "strictNullChecks": true,
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
