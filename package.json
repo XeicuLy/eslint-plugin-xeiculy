@@ -58,9 +58,6 @@
     "**/*.{css,js,ts,cjs,mjs,cts,mts,jsx,tsx,json,jsonc}": ["biome check --write --no-errors-on-unmatched"],
     "**/*.{md,html,yaml,yml}": ["prettier --write"]
   },
-  "resolutions": {
-    "eslint-plugin-xeiculy": "workspace:*"
-  },
   "volta": {
     "node": "22.15.0",
     "pnpm": "10.10.0"
