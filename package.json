@@ -31,8 +31,9 @@
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "prettier:ci": "prettier --check --log-level warn .",
-    "lint": "pnpm biome && pnpm prettier",
-    "lint:fix": "pnpm biome:fix && pnpm prettier:fix",
+    "typecheck": "tsc --noEmit",
+    "lint": "pnpm biome && pnpm prettier && pnpm typecheck",
+    "lint:fix": "pnpm biome:fix && pnpm prettier:fix && pnpm typecheck",
     "prerelease": "pnpm build && pnpm lint:fix",
     "prepare": "husky"
   },
