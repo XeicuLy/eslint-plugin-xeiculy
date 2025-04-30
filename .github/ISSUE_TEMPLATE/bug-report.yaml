@@ -1,0 +1,70 @@
+name: 🐛 バグ報告 / Bug Report
+description: バグの詳細を記入してください / Please provide details about the bug
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        バグ報告ありがとうございます。以下の情報を記入してください。
+        Thank you for reporting a bug. Please fill in the information below.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 🐞 バグの概要 / Bug Summary
+      description: どのような問題が発生しましたか？ / What issue are you experiencing?
+      placeholder: できるだけ具体的に記述してください / Please be as specific as possible
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: ✅ 再現手順 / Steps to Reproduce
+      description: バグを再現するための手順を記述してください / Please describe the steps to reproduce the bug
+      placeholder: |
+        1. '...' に移動 / Navigate to '...'
+        2. '....' をクリック / Click on '....'
+        3. '....' までスクロール / Scroll down to '....'
+        4. エラーが発生 / See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction_environment
+    attributes:
+      label: 🔄 再現環境 / Reproduction Environment
+      description: バグを再現できる環境やリンクを提供してください / Please provide an environment or link where the bug can be reproduced
+      placeholder: |
+        - 再現用のリンク / Reproduction URL: [e.g.: CodeSandbox, Stackblitz, GitHub URL, Demo Page]
+        - リポジトリの関連部分 / Relevant Repository Section: [e.g.: frontend/components/user/profile.vue]
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 🔍 期待される動作 / Expected Behavior
+      description: 本来どのように動作するべきでしたか？ / How should it have worked?
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 💻 環境情報 / Environment Information
+      description: 使用している環境の情報を提供してください / Please provide information about your environment
+      placeholder: |
+        - OS: [e.g.: Windows 11, macOS Ventura]
+        - Node Version: [e.g.: Node 22.15.0, Node 18.x.x]
+        - 主要な依存関係のバージョン / Key Dependency Versions: [e.g.: Vue: 3.5.3]
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: ℹ️ 追加情報 / Additional Information
+      description: その他、関連する情報があれば記入してください / Please provide any other relevant information
+    validations:
+      required: false

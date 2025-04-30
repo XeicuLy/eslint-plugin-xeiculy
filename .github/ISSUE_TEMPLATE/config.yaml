@@ -1,0 +1,13 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 質問・相談 / Questions & Discussions
+    url: https://github.com/XeicuLy/eslint-plugin-xeiculy/discussions
+    about: バグ報告や機能リクエスト以外の質問・相談はDiscussionsをご利用ください。 / Please use Discussions for questions and consultations other than bug reports and feature requests.
+
+defaults:
+  - template: 'bug-report.yaml'
+    name: '🐛 バグ報告 / Bug Report'
+    about: 'バグを報告する / Report a bug'
+  - template: 'feature-request.yaml'
+    name: '💡 機能リクエスト / Feature Request'
+    about: '新機能のアイデアを提案する / Suggest a new feature idea'
