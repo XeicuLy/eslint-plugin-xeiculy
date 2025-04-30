@@ -24,7 +24,7 @@
   "scripts": {
     "build": "unbuild",
     "dev": "unbuild --stub",
-    "release": "changelogen --release --push --publish",
+    "release": "changelogen --release --push && pnpm publish",
     "biome": "biome check .",
     "biome:fix": "biome check --write .",
     "biome:ci": "biome ci .",
