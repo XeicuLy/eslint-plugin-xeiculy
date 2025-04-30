@@ -8,7 +8,6 @@
     "types": ["vitest/globals", "node"],
     "strict": true,
     "esModuleInterop": true,
-    "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
   "include": ["src"],
