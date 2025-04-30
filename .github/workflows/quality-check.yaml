@@ -38,3 +38,6 @@ jobs:
 
       - name: Execute Prettier
         run: pnpm prettier:ci
+
+      - name: Execute TypeCheck
+        run: pnpm typecheck
