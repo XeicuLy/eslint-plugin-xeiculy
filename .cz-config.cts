@@ -97,9 +97,11 @@ const config = {
     type: 'コミットの種類（型）を選択してください:\n',
     subject: 'コミットメッセージを入力してください:\n',
     body: '変更内容の詳細を入力してください:（enterでスキップ）\n',
+    breaking: '破壊的変更がある場合は説明してください:（enterでスキップ）\n',
     footer: '関連するチケットや課題があれば番号を入力してください（例: #123）:（enterでスキップ）\n',
     confirmCommit: '上記の内容でコミットを行いますか？(Y/n)\n',
   },
+  allowBreakingChanges: [':sparkles: feat', ':zap: perf', ':art: improve', ':bug: fix', ':ambulance: hotfix'],
   skipQuestions: ['scope'],
   subjectLimit: 100,
 };
