@@ -2,12 +2,13 @@
   "compilerOptions": {
     "target": "ES2020",
     "lib": ["ESNext"],
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "types": ["vitest/globals", "node"],
     "strict": true,
     "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
   "include": ["src"],
