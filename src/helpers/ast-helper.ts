@@ -1,7 +1,7 @@
 import { AST_NODE_TYPES, type TSESTree } from '@typescript-eslint/utils';
 
-const nodeTypeGuardFactory = <T extends TSESTree.Node>(type: T['type']) => {
-  return (node: TSESTree.Node): node is T => node.type === type;
+const nodeTypeGuardFactory = <T extends TSESTree.Node>(nodeType: T['type']) => {
+  return (node: TSESTree.Node): node is T => node.type === nodeType;
 };
 
 /**
