@@ -32,8 +32,6 @@ jobs:
 
       - name: Setup Biome CLI
         uses: biomejs/setup-biome@v2
-        with:
-          version: '1.9.4'
 
       - name: Execute Biome
         run: pnpm biome:ci
@@ -43,3 +41,6 @@ jobs:
 
       - name: Execute TypeCheck
         run: pnpm typecheck
+
+      - name: Execute Build
+        run: pnpm build
