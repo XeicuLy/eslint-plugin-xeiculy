@@ -37,6 +37,9 @@ jobs:
           pnpm-version: ${{ env.PNPM_VERSION }}
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Execute build
+        run: pnpm build
+
       - name: Configure Git
         run: |
           git config --local user.name 'github-actions[bot]'
