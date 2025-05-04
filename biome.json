@@ -22,7 +22,20 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "warn",
+        "noUselessStringConcat": "error"
+      },
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedPrivateClassMembers": "error",
+        "noUnusedVariables": "error"
+      },
+      "suspicious": {
+        "noMisplacedAssertion": "error",
+        "noSkippedTests": "error"
+      }
     }
   },
   "javascript": {

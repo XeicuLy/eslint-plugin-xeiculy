@@ -12,5 +12,5 @@ export default defineBuildConfig({
       target: 'node20',
     },
   },
-  externals: ['eslint'],
+  externals: ['eslint', '@typescript-eslint/utils'],
 });
