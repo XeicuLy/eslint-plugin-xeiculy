@@ -54,7 +54,7 @@ jobs:
 
       - name: Release (manual)
         if: inputs.version_type != 'auto'
-        run: npx changelogen --release --push --${{ inputs.version_type }} && pnpm publish && npx changelogen gh release all
+        run: npx changelogen --release --push --${{ inputs.version_type }} && pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
