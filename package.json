@@ -34,6 +34,9 @@
     "typecheck": "tsc --noEmit",
     "lint": "pnpm biome && pnpm prettier && pnpm typecheck",
     "lint:fix": "pnpm biome:fix && pnpm prettier:fix && pnpm typecheck",
+    "test": "vitest",
+    "test:ui": "vitest --ui --coverage",
+    "test:ci": "vitest --run --coverage",
     "prerelease": "pnpm build && pnpm lint:fix",
     "prepare": "husky"
   },
@@ -44,6 +47,8 @@
     "@types/node": "22.15.3",
     "@typescript-eslint/typescript-estree": "8.31.1",
     "@typescript-eslint/utils": "8.31.1",
+    "@vitest/coverage-v8": "3.1.2",
+    "@vitest/ui": "3.1.2",
     "changelogen": "0.6.1",
     "commitizen": "4.3.1",
     "commitlint-config-gitmoji": "2.3.1",
