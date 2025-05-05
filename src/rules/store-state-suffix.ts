@@ -10,7 +10,7 @@ import { createEslintRule } from '../utils';
  * ルールのメッセージID
  * エラーメッセージのキーとして使用
  */
-const MESSAGE_ID = 'requireStateSuffix' as const;
+const MESSAGE_ID = 'require-state-suffix' as const;
 
 /**
  * ESLintルールのコンテキスト型
