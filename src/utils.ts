@@ -11,6 +11,16 @@ const blobTestUrl = 'https://github.com/XeicuLy/eslint-plugin-xeiculy/blob/main/
 
 export type RuleModule<TOptions extends readonly unknown[]> = Rule.RuleModule & { defaultOptions: TOptions };
 
+export const memoize = <T>(fn: () => T): (() => T) => {
+  let cached: T | undefined;
+  return () => {
+    if (cached === undefined) {
+      cached = fn();
+    }
+    return cached;
+  };
+};
+
 /**
  * 基本的なルールを作成する関数
  * @template TOptions ルールのオプション型
