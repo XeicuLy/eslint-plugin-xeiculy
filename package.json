@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-xeiculy",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "packageManager": "pnpm@10.10.0",
   "description": "XeicuLy's opinionated ESLint rules",
   "author": "XeicuLy",
@@ -12,7 +12,10 @@
     "url": "git+https://github.com/XeicuLy/eslint-plugin-xeiculy.git"
   },
   "bugs": "https://github.com/XeicuLy/eslint-plugin-xeiculy/issues",
-  "keywords": ["eslint", "eslint-plugin"],
+  "keywords": [
+    "eslint",
+    "eslint-plugin"
+  ],
   "sideEffects": false,
   "exports": {
     ".": "./dist/index.mjs"
@@ -20,7 +23,9 @@
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "unbuild",
     "dev": "unbuild --stub",
@@ -74,8 +79,12 @@
     }
   },
   "lint-staged": {
-    "**/*.{css,js,ts,cjs,mjs,cts,mts,jsx,tsx,json,jsonc}": ["biome check --write --no-errors-on-unmatched"],
-    "**/*.{md,html,yaml,yml}": ["prettier --write"]
+    "**/*.{css,js,ts,cjs,mjs,cts,mts,jsx,tsx,json,jsonc}": [
+      "biome check --write --no-errors-on-unmatched"
+    ],
+    "**/*.{md,html,yaml,yml}": [
+      "prettier --write"
+    ]
   },
   "volta": {
     "node": "22.15.0",
