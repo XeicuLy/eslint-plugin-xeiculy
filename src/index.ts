@@ -1,5 +1,6 @@
 import type { ESLint, Linter } from 'eslint';
 import { version } from '../package.json';
+import { requireReactiveValueSuffix } from './rules/require-reactive-value-suffix';
 import { storeStateSuffix } from './rules/store-state-suffix';
 
 type RuleDefinitions = (typeof plugin)['rules'];
@@ -16,6 +17,7 @@ const plugin = {
   version,
   rules: {
     'store-state-suffix': storeStateSuffix,
+    'require-reactive-value-suffix': requireReactiveValueSuffix,
   },
 } satisfies ESLint.Plugin;
 
