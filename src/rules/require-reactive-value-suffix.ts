@@ -28,10 +28,28 @@ import { createEslintRule, memoize } from '../utils';
 
 const MESSAGE_ID = 'require-reactive-value-suffix' as const;
 
+/**
+ * ルールのメッセージID型
+ */
 type MessageIds = typeof MESSAGE_ID;
+
+/**
+ * ルールオプション
+ */
 type RuleOptions = { functionNamesToIgnoreValueCheck?: string[] };
+
+/**
+ * ルールコンテキスト
+ */
 type RuleContext = Readonly<TSESLint.RuleContext<MessageIds, RuleOptions[]>>;
 
+/**
+ * 変数が.valueサフィックスを必要とするかどうかを判断する
+ *
+ * @param variableNode 確認する識別子ノード
+ * @param typeChecker TypeScript型チェッカー
+ * @param parserServices TypeScript ESLintのパーサーサービス
+ */
 const needsValueSuffix = (
   variableNode: TSESTree.Identifier,
   typeChecker: TypeChecker,
@@ -46,6 +64,11 @@ const needsValueSuffix = (
   return isRefTypeVariable && isValueSuffixMissing && !hasNonNullAssertion;
 };
 
+/**
+ * ソースコードからすべての変数宣言子を取得する
+ *
+ * @param ruleContext ESLintルールコンテキスト
+ */
 const getAllVariableDeclarators = (ruleContext: RuleContext): TSESTree.VariableDeclarator[] => {
   return ruleContext.sourceCode.ast.body.flatMap((sourceNode) => {
     if (isVariableDeclaration(sourceNode)) {
@@ -55,7 +78,17 @@ const getAllVariableDeclarators = (ruleContext: RuleContext): TSESTree.VariableD
   });
 };
 
+/**
+ * storeToRefs宣言から変数名を抽出する
+ *
+ * @param ruleContext ESLintルールコンテキスト
+ */
 const getStoreToRefsVariableNames = (ruleContext: RuleContext): string[] => {
+  /**
+   * 宣言がstoreToRefsの呼び出しかどうかを確認する
+   *
+   * @param declaration 確認する変数宣言子
+   */
   const isStoreToRefsDeclaration = (declaration: TSESTree.VariableDeclarator): boolean =>
     isObjectPattern(declaration.id) &&
     !!declaration.init &&
@@ -63,6 +96,11 @@ const getStoreToRefsVariableNames = (ruleContext: RuleContext): string[] => {
     hasIdentifierCallee(declaration.init) &&
     declaration.init.callee.name === 'storeToRefs';
 
+  /**
+   * オブジェクトパターンから識別子名を抽出する
+   *
+   * @param declaration 変数宣言子
+   */
   const extractIdentifierNames = (declaration: TSESTree.VariableDeclarator): string[] => {
     if (!isObjectPattern(declaration.id)) return [];
 
@@ -72,13 +110,28 @@ const getStoreToRefsVariableNames = (ruleContext: RuleContext): string[] => {
   return getAllVariableDeclarators(ruleContext).filter(isStoreToRefsDeclaration).flatMap(extractIdentifierNames);
 };
 
+/**
+ * ソースコードからすべてのリアクティブ変数名を取得する
+ *
+ * @param ruleContext ESLintルールコンテキスト
+ */
 const getAllReactiveVariableNames = (ruleContext: RuleContext): string[] => {
+  /**
+   * 宣言がリアクティブ関数の呼び出しで初期化されているかどうかを確認する
+   *
+   * @param declaration 確認する変数宣言子
+   */
   const isReactiveFunctionCall = (declaration: TSESTree.VariableDeclarator): boolean =>
     !!declaration.init &&
     isCallExpression(declaration.init) &&
     hasIdentifierCallee(declaration.init) &&
     REACTIVE_FUNCTIONS.includes(declaration.init.callee.name as (typeof REACTIVE_FUNCTIONS)[number]);
 
+  /**
+   * 宣言子から変数名を抽出する
+   *
+   * @param declaration 変数宣言子
+   */
   const extractVariableNames = (declaration: TSESTree.VariableDeclarator): string[] => {
     if (isIdentifier(declaration.id)) {
       return [declaration.id.name];
@@ -107,13 +160,28 @@ const getAllReactiveVariableNames = (ruleContext: RuleContext): string[] => {
   return [...reactiveVariableNames, ...storeToRefsVariableNames];
 };
 
+/**
+ * コンポーザブル関数の呼び出しから変数名を取得する
+ *
+ * @param ruleContext ESLintルールコンテキスト
+ */
 const getComposableFunctionVariableNames = (ruleContext: RuleContext): string[] => {
+  /**
+   * 宣言がコンポーザブル関数の呼び出しで初期化されているかどうかを確認する
+   *
+   * @param declaration 確認する変数宣言子
+   */
   const isComposableFunctionCall = (declaration: TSESTree.VariableDeclarator): boolean =>
     !!declaration.init &&
     isCallExpression(declaration.init) &&
     hasIdentifierCallee(declaration.init) &&
     COMPOSABLES_FUNCTION_PATTERN.test(declaration.init.callee.name);
 
+  /**
+   * オブジェクトパターンからプロパティ変数名を抽出する
+   *
+   * @param declaration 変数宣言子
+   */
   const extractPropertyVariableNames = (declaration: TSESTree.VariableDeclarator): string[] => {
     if (!isObjectPattern(declaration.id)) return [];
 
@@ -127,6 +195,14 @@ const getComposableFunctionVariableNames = (ruleContext: RuleContext): string[] 
     .flatMap(extractPropertyVariableNames);
 };
 
+/**
+ * 特定の識別子ノードに対する警告を抑制すべきかどうかを判断する
+ *
+ * @param node 確認する識別子ノード
+ * @param parent 親ノード
+ * @param composableFunctions コンポーザブル関数名のリスト
+ * @param ignoredFunctionNames 無視する関数名のリスト
+ */
 const shouldSuppressWarning = (
   node: TSESTree.Identifier,
   parent: TSESTree.Node,
@@ -158,6 +234,15 @@ const shouldSuppressWarning = (
   return isInDeclarationContext || isPropertyAccess || isSpecialArgument || isInLiteral;
 };
 
+/**
+ * 識別子ノードを処理して.valueサフィックスが必要かどうかを確認する
+ *
+ * @param identifierNode 処理する識別子ノード
+ * @param ruleContext ESLintルールコンテキスト
+ * @param reactiveVariableNames リアクティブ変数名のリスト
+ * @param composableFunctionVariableNames コンポーザブル関数変数名のリスト
+ * @param ignoredFunctionNames 無視する関数名のリスト
+ */
 const processIdentifierNode = (
   identifierNode: TSESTree.Identifier,
   ruleContext: RuleContext,
@@ -180,6 +265,13 @@ const processIdentifierNode = (
   }
 };
 
+/**
+ * メンバー式ノードを処理してそのオブジェクトに.valueサフィックスが必要かどうかを確認する
+ *
+ * @param memberExpressionNode 処理するメンバー式ノード
+ * @param ruleContext ESLintルールコンテキスト
+ * @param reactiveVariableNames リアクティブ変数名のリスト
+ */
 const processMemberExpressionNode = (
   memberExpressionNode: TSESTree.MemberExpression,
   ruleContext: RuleContext,
@@ -204,6 +296,21 @@ const processMemberExpressionNode = (
   }
 };
 
+/**
+ * Vue.jsでリアクティブな値にアクセスする際に.valueサフィックスの使用を強制するESLintルール
+ *
+ * このルールはリアクティブな変数（例：ref, computed）を識別し、必要な.valueサフィックスなしで
+ * アクセスした場合に報告します。
+ *
+ * @example
+ * // 不正
+ * const count = ref(0);
+ * console.log(count); // .valueが不足
+ *
+ * // 正しい
+ * const count = ref(0);
+ * console.log(count.value);
+ */
 export const requireReactiveValueSuffix = createEslintRule({
   name: 'require-reactive-value-suffix',
   meta: {
@@ -229,6 +336,11 @@ export const requireReactiveValueSuffix = createEslintRule({
     ],
   },
   defaultOptions: [{}],
+  /**
+   * ルールの実装
+   *
+   * @param ruleContext ESLintルールコンテキスト
+   */
   create(ruleContext: RuleContext) {
     const ruleOptions = ruleContext.options[0] || {};
     const functionNamesToIgnoreValueCheck = ruleOptions.functionNamesToIgnoreValueCheck || [];
@@ -239,6 +351,11 @@ export const requireReactiveValueSuffix = createEslintRule({
     const composableFunctionList = getComposableFunctions();
 
     return {
+      /**
+       * 識別子ノードのハンドラ
+       *
+       * @param identifierNode 識別子ノード
+       */
       Identifier(identifierNode) {
         processIdentifierNode(
           identifierNode,
@@ -248,6 +365,11 @@ export const requireReactiveValueSuffix = createEslintRule({
           functionNamesToIgnoreValueCheck,
         );
       },
+      /**
+       * メンバー式ノードのハンドラ
+       *
+       * @param memberExpressionNode メンバー式ノード
+       */
       MemberExpression(memberExpressionNode) {
         processMemberExpressionNode(memberExpressionNode, ruleContext, reactiveVariableList);
       },
