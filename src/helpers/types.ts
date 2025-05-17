@@ -1,12 +1,8 @@
-import {
-  ESLintUtils,
-  type ParserServices,
-  type ParserServicesWithTypeInformation,
-  type ParserServicesWithoutTypeInformation,
-  type TSESLint,
-  type TSESTree,
-} from '@typescript-eslint/utils';
+import { ESLintUtils, type ParserServices, type TSESLint, type TSESTree } from '@typescript-eslint/utils';
 import type { TypeChecker } from 'typescript';
+import type { AST as VAST } from 'vue-eslint-parser';
+import type { LocationRange } from 'vue-eslint-parser/ast/locations';
+import type { ExtendedParserServices } from '../types/parser';
 
 /**
  * ESTreeノードに対応するTypeScriptの型を文字列として取得します。
@@ -71,10 +67,10 @@ export const getTypeString = <T extends TSESTree.Node>(
 export const getTypeCheckingServices = <Context extends Readonly<TSESLint.RuleContext<string, unknown[]>>>(
   context: Context,
 ): {
-  parserServices: ParserServicesWithTypeInformation | ParserServicesWithoutTypeInformation;
+  parserServices: ExtendedParserServices;
   typeChecker: TypeChecker;
 } => {
-  const parserServices = ESLintUtils.getParserServices(context);
+  const parserServices = ESLintUtils.getParserServices(context) as ExtendedParserServices;
   const typeChecker = parserServices.program.getTypeChecker();
   return { parserServices, typeChecker };
 };
@@ -121,4 +117,33 @@ export const createReportData = <MessageId extends string>(
   node,
   messageId,
   data: { name: node.name },
+});
+
+/**
+ * Vueテンプレート要素に対するESLintエラーレポートデータを作成します。
+ * エラーメッセージで name プロパティのみを使用する場合に最適です。
+ *
+ * @param element - 報告対象のVueテンプレートノード（位置情報を含む）
+ * @param messageId - ルールで定義されたメッセージID
+ * @param data - 報告するデータ（name プロパティが必要）
+ * @returns ESLintのreportメソッドに渡すためのデータオブジェクト
+ *
+ * @example
+ * // ESLintルールでの使用例:
+ * context.report(createVueElementReportData(
+ *   element,
+ *   'forbiddenElement',
+ *   { name: element.name }
+ * ));
+ * // messageが "{{ name }} は使用できません" の場合、
+ * // "div は使用できません" のようなメッセージが生成される
+ */
+export const createVueElementReportData = <MessageId extends string>(
+  element: VAST.Node & { loc: LocationRange },
+  messageId: MessageId,
+  nameData: string | { name: string },
+) => ({
+  loc: element.loc,
+  messageId,
+  data: { name: typeof nameData === 'string' ? nameData : nameData.name },
 });
