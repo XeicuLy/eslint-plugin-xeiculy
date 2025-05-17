@@ -3,7 +3,7 @@ import type { RuleContext, RuleMetaData } from '@typescript-eslint/utils/ts-esli
 import type { Rule } from 'eslint';
 
 /** ドキュメントが存在するルール名のリスト */
-const hasDocumentList = ['store-state-suffix'];
+const hasDocumentList = ['store-state-suffix', 'require-reactive-value-suffix', 'restrict-directive-to-template'];
 /** ドキュメントの GitHub URL */
 const blobDocsUrl = 'https://github.com/XeicuLy/eslint-plugin-xeiculy/blob/main/src/docs/';
 /** テストファイルの GitHub URL */
