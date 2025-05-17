@@ -12,10 +12,7 @@
     "url": "git+https://github.com/XeicuLy/eslint-plugin-xeiculy.git"
   },
   "bugs": "https://github.com/XeicuLy/eslint-plugin-xeiculy/issues",
-  "keywords": [
-    "eslint",
-    "eslint-plugin"
-  ],
+  "keywords": ["eslint", "eslint-plugin"],
   "sideEffects": false,
   "exports": {
     ".": "./dist/index.mjs"
@@ -23,9 +20,7 @@
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "unbuild",
     "dev": "unbuild --stub",
@@ -65,7 +60,8 @@
     "typescript": "5.8.3",
     "unbuild": "3.5.0",
     "vite": "6.3.3",
-    "vitest": "3.1.2"
+    "vitest": "3.1.2",
+    "vue-eslint-parser": "10.1.3"
   },
   "peerDependencies": {
     "eslint": ">=9.0.0"
@@ -79,12 +75,8 @@
     }
   },
   "lint-staged": {
-    "**/*.{css,js,ts,cjs,mjs,cts,mts,jsx,tsx,json,jsonc}": [
-      "biome check --write --no-errors-on-unmatched"
-    ],
-    "**/*.{md,html,yaml,yml}": [
-      "prettier --write"
-    ]
+    "**/*.{css,js,ts,cjs,mjs,cts,mts,jsx,tsx,json,jsonc}": ["biome check --write --no-errors-on-unmatched"],
+    "**/*.{md,html,yaml,yml}": ["prettier --write"]
   },
   "volta": {
     "node": "22.15.0",
