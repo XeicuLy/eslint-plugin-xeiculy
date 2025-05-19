@@ -83,10 +83,10 @@
     }
   },
   "lint-staged": {
-    "**/*.{css,js,ts,cjs,mjs,cts,mts,jsx,tsx,json,jsonc}": [
+    "**/*.{css,js,ts,cjs,mjs,cts,mts,jsx,tsx}": [
       "biome check --write --no-errors-on-unmatched"
     ],
-    "**/*.{md,html,yaml,yml}": [
+    "**/*.{json,jsonc,md,html,yaml,yml}": [
       "prettier --write"
     ]
   },
