@@ -6,9 +6,9 @@ export interface TemplateBodyVisitor {
   VElement?: (node: VAST.VElement) => void;
 }
 
-export interface ScriptVisitor {
-  [key: string]: (node: TSESTree.Node) => void;
-}
+export type ScriptVisitor = {
+  [K in keyof RuleListener]?: (node: Extract<Parameters<RuleListener[K]>[0], TSESTree.Node>) => void;
+};
 
 export interface VueParserServices {
   defineTemplateBodyVisitor: (templateBodyVisitor: TemplateBodyVisitor, scriptVisitor?: ScriptVisitor) => RuleListener;
