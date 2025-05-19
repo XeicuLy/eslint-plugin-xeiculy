@@ -10,8 +10,6 @@ export interface ScriptVisitor {
   [key: string]: (node: TSESTree.Node) => void;
 }
 
-export type TemplateBodyVisitorKeys = keyof TemplateBodyVisitor;
-
 export interface VueParserServices {
   defineTemplateBodyVisitor: (templateBodyVisitor: TemplateBodyVisitor, scriptVisitor?: ScriptVisitor) => RuleListener;
 }
