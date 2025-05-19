@@ -21,4 +21,7 @@ export default () =>
       ci: { title: '👷 CI構築/更新' },
       release: { title: '🚀 リリース' },
     },
+    templates: {
+      commitMessage: ':bookmark: chore(release): v{{newVersion}}',
+    },
   }) satisfies Partial<ChangelogConfig>;
