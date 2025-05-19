@@ -17,9 +17,9 @@ const plugin = {
   name: 'xeiculy',
   version,
   rules: {
-    'store-state-suffix': storeStateSuffix,
     'require-reactive-value-suffix': requireReactiveValueSuffix,
     'restrict-directive-to-template': restrictDirectiveToTemplate,
+    'store-state-suffix': storeStateSuffix,
   },
 } satisfies ESLint.Plugin;
 
